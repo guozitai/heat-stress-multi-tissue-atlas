@@ -16,7 +16,7 @@ This repository contains bioinformatics analysis code for a multi-tissue, multi-
 
 - Bulk mRNA-seq: 37 samples across 5 tissues (rumen, liver, mammary, adipose, muscle)
 - miRNA-seq: 16 samples (adipose, muscle)
-- scRNA-seq: 6 PBMC samples (69,078 cells after QC)
+- scRNA-seq: 6 PBMC samples (82,013 cells after QC)
 - Arteriovenous blood biochemistry
 
 ## Repository contents
