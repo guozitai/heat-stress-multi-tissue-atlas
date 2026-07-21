@@ -24,9 +24,12 @@ This repository contains bioinformatics analysis code for a multi-tissue, multi-
 | File | Covers |
 |---|---|
 | `SciData_Master_RCode_Final.R` | Main analysis script: count matrix → DESeq2 differential expression (Fig. 2), GO/KEGG enrichment (Fig. 3), miRNA differential expression and target networks (Fig. 4), scRNA-seq integration and SingleR annotation (Fig. 5), hdWGCNA co-expression modules (Fig. 6a–c), CellChat cell–cell communication (Fig. 6d) |
-| `SciData_Figure_RCode_final.R` | Final figure-rendering script used to produce the published panels. Its plotting sections overlap with the master script; where the two differ, this file reflects the version used for the submitted figures. |
+| `figures/` | Scripts that rendered the **final submitted versions** of Fig. 2c, Fig. 3, Fig. 5a–d and Fig. 6b. See `figures/README.md` — it also documents the text-rendering requirement and the excluded unassigned cluster. |
+| `SciData_Figure_RCode_final.R` | A later partial collection covering Fig. 2a, the Fig. 2 and Fig. 4 combined legends, Fig. 6b and Fig. 6c, plus the colour update applied to the Fig. 4b network. It is **not** a standalone script for all figures, and for the panels listed under `figures/` it has been superseded. |
 | `run_dnbc4tools_all.sh` | scRNA-seq upstream processing (DNBC4tools v2.1.3) for the six PBMC libraries |
 | `sessionInfo.txt` | Full R session and package versions for the analyses above |
+
+Panels not covered by `figures/` come from `SciData_Master_RCode_Final.R` unchanged. Fig. 1 is a schematic with no R code.
 
 ### Not included
 
