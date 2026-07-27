@@ -52,7 +52,9 @@ export HS_OUT_DIR=/path/to/figures    # default: ./figures
 Rscript figures/fig5_panels_noun.R
 ```
 
-Inputs are archived at figshare, <https://doi.org/10.6084/m9.figshare.32993768>.
+These scripts read the same archived intermediate objects as the main script (see
+"What this code does and does not run" in the top-level README); the bulk count matrix
+is archived at figshare, <https://doi.org/10.6084/m9.figshare.32993768>.
 Package versions are in `../sessionInfo.txt`.
 
 ## A note on the comments
