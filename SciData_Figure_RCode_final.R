@@ -45,7 +45,7 @@
 #   Treatment：HS=#D73027, PFTN=#4575B4
 #   细胞类型：T cells=#E64B35, B cells=#4DBBD5, Monocytes=#00A087,
 #             NK cells=#3C5488, Plasma cells=#F39B7F, DCs=#8491B4,
-#             HSCs=#91D1C2
+#             Unassigned=#91D1C2
 # ============================================================
 
 .libPaths(c(.libPaths(),
@@ -313,7 +313,7 @@ mod_order <- c("black","blue","brown","green","red","turquoise","yellow")
 mod_order <- mod_order[mod_order %in% colnames(mean_hME)]
 mean_hME <- mean_hME[, mod_order]
 
-ct_order <- c("T cells","B cells","Monocytes","NK cells","Plasma cells","Dendritic cells","HSCs")
+ct_order <- c("T cells","B cells","Monocytes","NK cells","Plasma cells","Dendritic cells","Unassigned")
 ct_order <- ct_order[ct_order %in% rownames(mean_hME)]
 mean_hME <- mean_hME[ct_order, ]
 
