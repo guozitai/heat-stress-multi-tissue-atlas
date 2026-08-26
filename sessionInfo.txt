@@ -6,12 +6,17 @@ Key package versions
 --------------------
   Seurat           5.1.0
   SingleR          2.8.0
-  SCINA            1.2.0
   celldex          1.16.0
   hdWGCNA          0.4.11
   CellChat         2.2.0.9001
   clusterProfiler  4.14.3
   DESeq2           1.46.0
+
+Note: SCINA 1.2.0 appears in the 'other attached packages' list of the full
+sessionInfo() output below because it was attached in the session used to record
+package versions. It was not called at any point in the analysis; cell-type
+annotation used SingleR with celldex::MonacoImmuneData followed by marker-based
+adjudication, as described in the Methods.
 
 Full sessionInfo()
 ------------------

@@ -115,7 +115,7 @@
 #   Treatment：HS=#D73027  PFTN=#4575B4
 #   细胞类型：T cells=#E64B35  B cells=#4DBBD5  Monocytes=#00A087
 #             NK cells=#3C5488  Plasma cells=#F39B7F
-#             Dendritic cells=#8491B4  HSCs=#91D1C2
+#             Dendritic cells=#8491B4  Unassigned=#91D1C2
 # ============================================================
 
 
@@ -908,8 +908,12 @@ pred_main <- SingleR(test = expr, ref = ref, labels = ref$label.main,
 pred_fine <- SingleR(test = expr, ref = ref, labels = ref$label.fine,
                      clusters = clusters, assay.type.test = "logcounts")
 
-# 手动映射到7种细胞类型（基于博士论文+marker验证）
-# Manual mapping to 7 cell types (prior annotation + marker validation)
+# 簇 -> 细胞类型。这张表是注释流程的结果，不是流程本身；完整流程见 annotate_celltypes.R
+# Cluster -> cell type. This lookup is the OUTCOME of the annotation procedure, not the
+# procedure itself: SingleR was run at cluster level against celldex::MonacoImmuneData twice,
+# once with label.main and once with label.fine, and the 8 clusters whose two predictions
+# disagreed were adjudicated on canonical lineage markers. Full workflow:
+# annotate_celltypes.R. Per-cluster evidence: cluster_annotation_evidence.csv
 cluster_to_celltype <- c(
   "0"  = "T cells",      "1"  = "T cells",      "2"  = "B cells",
   "3"  = "B cells",      "4"  = "B cells",      "5"  = "Monocytes",
@@ -919,7 +923,10 @@ cluster_to_celltype <- c(
   "15" = "Monocytes",    "16" = "B cells",      "17" = "T cells",
   "18" = "Dendritic cells", "19" = "T cells",   "20" = "B cells",
   "21" = "T cells",      "22" = "T cells",      "23" = "T cells",
-  "24" = "HSCs"
+  # main dendritic / fine exhausted B - mutually inconsistent; CD34, PROM1 and MPO are
+  # detected in 0% of these 110 cells, so no lineage is supported. Previously "HSCs",
+  # which the data do not support; the manuscript has always reported it as unassigned.
+  "24" = "Unassigned"
 )
 
 celltype <- cluster_to_celltype[as.character(obj$seurat_clusters)]
@@ -943,12 +950,12 @@ library(tidyr)
 celltype_colors <- c(
   "T cells" = "#E64B35", "B cells" = "#4DBBD5", "Monocytes" = "#00A087",
   "NK cells" = "#3C5488", "Plasma cells" = "#F39B7F",
-  "Dendritic cells" = "#8491B4", "HSCs" = "#91D1C2"
+  "Dendritic cells" = "#8491B4", "Unassigned" = "#91D1C2"
 )
 
 obj$celltype <- factor(obj$celltype,
   levels = c("T cells","B cells","Monocytes","NK cells",
-             "Plasma cells","Dendritic cells","HSCs"))
+             "Plasma cells","Dendritic cells","Unassigned"))
 
 theme_nature <- theme_classic(base_size = 7, base_family = "Arial") +
   theme(
@@ -1132,7 +1139,7 @@ mod_order_6b <- mod_order_6b[mod_order_6b %in% colnames(mean_hME)]
 mean_hME <- mean_hME[, mod_order_6b]
 
 ct_order <- c("T cells","B cells","Monocytes","NK cells",
-              "Plasma cells","Dendritic cells","HSCs")
+              "Plasma cells","Dendritic cells","Unassigned")
 ct_order <- ct_order[ct_order %in% rownames(mean_hME)]
 mean_hME <- mean_hME[ct_order, ]
 
