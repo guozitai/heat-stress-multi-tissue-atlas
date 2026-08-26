@@ -1,6 +1,6 @@
 # Figure re-rendering scripts
 
-These four scripts produced the **final versions of the panels submitted with the
+These scripts produced the **final versions of the panels submitted with the
 manuscript**. They supersede the corresponding plotting sections of
 `../SciData_Master_RCode_Final.R` for those panels; every other panel comes from
 the master script unchanged.
@@ -11,9 +11,11 @@ the master script unchanged.
 | `fig3_rerun.R` | `Fig3_ab_complete.pdf` | Font rendering fix and corrected page box (the earlier export was clipped) |
 | `fig5_panels_noun.R` | `Fig5_panel_a_tSNE.pdf`, `_b_cell_proportion`, `_c_DEG_counts`, `_d_marker_dotplot` | Font rendering; unassigned cluster excluded |
 | `fig6b_noun.R` | `Fig6_panel_b_module_heatmap.pdf` | Font rendering; unassigned cell type excluded |
+| `fig5b_per_animal.R` | `Fig5b_cellprop_per_animal.pdf/.png`, `Fig5b_source_data.csv` | **Revision.** Cell-type proportions per animal (six stacked bars) instead of pooled within treatment group (two bars), as Reviewer 2 asked. Supersedes the Fig. 5b panel of `fig5_panels_noun.R` |
+| `fig4b_v13_horizontal.R` | `Fig4b_v13_horizontal.pdf/.png` | **Revision.** miRNA-target network with horizontal labels and automatic collision resolution: every label box is tested against every other and colliding labels are displaced vertically until they clear. Verified to leave zero overlapping pairs |
 
-Panels not listed here (Fig. 2a, the Fig. 2 and Fig. 4 legends, Fig. 4a, Fig. 4b,
-Fig. 6a, Fig. 6c, Fig. 6d) were not re-rendered and come from the master script.
+Panels not listed here (Fig. 2a, the Fig. 2 and Fig. 4 legends, Fig. 4a, Fig. 6a,
+Fig. 6c, Fig. 6d) were not re-rendered and come from the master script.
 Fig. 1 is a schematic with no R code.
 
 ## Two things worth knowing
