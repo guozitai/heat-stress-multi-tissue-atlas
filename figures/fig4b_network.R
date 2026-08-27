@@ -11,7 +11,10 @@ dat <- read_excel("/home/guozitai/20250220/targetgene_enrich.xlsx") %>%
   filter(!is.na(tissue))
 TOP_N <- 4; R_MIR <- 2.5; R_GENE <- 5.9; CX <- 7.0
 make_polar <- function(data, cx, cy) {
-  dat_t  <- data %>% group_by(mirna) %>% slice_head(n = TOP_N) %>% ungroup()
+  ## 源表每个 miRNA-基因对按其所属富集通路重复出现,先去重再取 top N,
+  ## 否则同一个基因会被当成多个不同靶点画成多个节点
+  dat_t  <- data %>% distinct(mirna, gene, .keep_all = TRUE) %>%
+            group_by(mirna) %>% slice_head(n = TOP_N) %>% ungroup()
   mirnas <- unique(dat_t$mirna); n_mir <- length(mirnas)
   mir_ang <- seq(pi/2, pi/2 + 2*pi, length.out = n_mir + 1)[1:n_mir]
   mn<-list(); gn<-list(); ed<-list()
@@ -136,9 +139,9 @@ draw <- function(){
     pt.bg=c(col_adi_mir,col_mus_mir),pch=21,pt.cex=1.1,col="white",pt.lwd=0.8,cex=0.55,bty="n",
     title="Tissue",title.col="grey20",title.cex=0.58)
 }
-cairo_pdf(file.path(outdir,"Fig4b_v13_horizontal.pdf"), width=9.8, height=5.9)
+cairo_pdf(file.path(outdir,"Fig4b_network.pdf"), width=9.8, height=5.9)
 draw(); dev.off()
-png(file.path(outdir,"Fig4b_v13_horizontal.png"), width=9.8, height=5.9, units="in", res=600, type="cairo")
+png(file.path(outdir,"Fig4b_network.png"), width=9.8, height=5.9, units="in", res=600, type="cairo")
 draw(); dev.off()
 cat("done
 ")
