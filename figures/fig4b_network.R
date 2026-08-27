@@ -90,8 +90,9 @@ draw <- function(){
 
   boxes<-list()
   for(p in list(list(g=adi$gene,cx=-CX),list(g=mus$gene,cx=CX))){
-    g<-p$g %>% mutate(d=sqrt((x-p$cx)^2+y^2)) %>% group_by(name) %>%
-       slice_max(d,n=1,with_ties=FALSE) %>% ungroup()
+    ## 去重已在 make_polar 里按 (miRNA, 基因) 对完成,所以每个节点都是一个不同的
+    ## 预测靶点 -> 每个节点都标注。被两条 miRNA 共同靶向的基因会出现两次,这是实情。
+    g<-p$g
     for(i in seq_len(nrow(g))){
       a<-g$ang[i]; tx<-p$cx+(R_GENE+0.34)*cos(a); ty<-(R_GENE+0.34)*sin(a)
       boxes[[length(boxes)+1]]<-build_box(g$name[i],tx,ty,if(cos(a)>=0) 0 else 1,
