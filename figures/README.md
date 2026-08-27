@@ -1,7 +1,7 @@
 # Figure re-rendering scripts
 
 These scripts produced the **final versions of the panels submitted with the
-manuscript**. They supersede the corresponding plotting sections of
+manuscript**, except where a row says otherwise. They supersede the corresponding plotting sections of
 `../SciData_Master_RCode_Final.R` for those panels; every other panel comes from
 the master script unchanged.
 
@@ -11,7 +11,7 @@ the master script unchanged.
 | `fig3_rerun.R` | `Fig3_ab_complete.pdf` | Font rendering fix and corrected page box (the earlier export was clipped) |
 | `fig5_panels_noun.R` | `Fig5_panel_a_tSNE.pdf`, `_b_cell_proportion`, `_c_DEG_counts`, `_d_marker_dotplot` | Font rendering; unassigned cluster excluded |
 | `fig6b_noun.R` | `Fig6_panel_b_module_heatmap.pdf` | Font rendering; unassigned cell type excluded |
-| `fig5b_per_animal.R` | `Fig5b_cellprop_per_animal.pdf/.png`, `Fig5b_source_data.csv` | **Revision.** Cell-type proportions per animal (six stacked bars) instead of pooled within treatment group (two bars), as Reviewer 2 asked. Supersedes the Fig. 5b panel of `fig5_panels_noun.R` |
+| `fig5b_per_animal.R` | `Fig5b_source_data.csv`, and a per-animal rendering of the Fig. 5b panel | **Revision. Not a submitted panel.** Computes cell-type composition separately for each of the six animals. The submitted Fig. 5b remains the group-level panel from `fig5_panels_noun.R`, so that every figure in the manuscript is organised as a heat-stressed versus pair-fed comparison; the per-animal values this script produces are deposited as sheet S7 of the supplementary tables and are the basis for the between-animal variation reported in Technical Validation |
 | `fig4b_network.R` | `Fig4b_network.pdf/.png` | **Revision.** miRNA-target network. Two changes: target genes are selected as distinct miRNA-gene pairs (the source table lists each pair once per enriched pathway, so a row-wise selection could draw one gene as several nodes), and every node is labelled - a gene targeted by two miRNAs is drawn, and labelled, once per miRNA. Labels are kept horizontal with automatic collision resolution: every label box is tested against every other and colliding labels are displaced vertically until they clear. The script reports the number of residual overlapping pairs, which is zero |
 
 Panels not listed here (Fig. 2a, the Fig. 2 and Fig. 4 legends, Fig. 4a, Fig. 6a,
